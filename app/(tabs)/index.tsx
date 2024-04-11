@@ -12,7 +12,8 @@ import {
   ScrollView
 } from 'react-native';
 
-import { Redirect, useGlobalSearchParams, router, Link } from 'expo-router';
+import { useRouter  } from 'expo-router';
+
 import { Text, View } from '@/components/Themed';
 
 import { Product } from '../../interfaces/productInterface';
@@ -36,6 +37,8 @@ export default function HomeScreen() {
   // const [_selectProduct, setSelectProduct] = React.useState(params.q);
 
   const { selectProduct } = useCart();
+
+  const navigation = useRouter();
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -88,6 +91,8 @@ export default function HomeScreen() {
 
   function onPressSelectedProduct(item: Product | any) {
     selectProduct(item);
+
+    navigation.push('/product');
     // router.setParams({ selectedProduct: JSON.stringify(item) });
   };
 
@@ -112,14 +117,14 @@ export default function HomeScreen() {
         renderItem={({ item }) => (
           <Pressable onPress={() => onPressSelectedProduct(item)}>
             <View style={styles.card}>
-              <Text style={styles.title}>{item.title}</Text>
-              <Image source={{ uri: item.image }} style={styles.image} />
-              <Text style={styles.price}>R$ {item.price}</Text>
-              <View style={styles.ratingContainer}>
-                <Text style={styles.ratingText}>{item.rating.count}</Text>
-                <Image source={{ uri: '../../assets/images/icons8-star-50.png' }} style={styles.starIcon} />
-                <Text style={styles.ratingText}>{item.rating.rate}</Text>
-              </View>
+                <Text style={styles.title}>{item.title}</Text>
+                <Image source={{ uri: item.image }} style={styles.image} />
+                <Text style={styles.price}>R$ {item.price}</Text>
+                <View style={styles.ratingContainer}>
+                  <Text style={styles.ratingText}>{item.rating.count}</Text>
+                  <Image source={{ uri: '../../assets/images/icons8-star-50.png' }} style={styles.starIcon} />
+                  <Text style={styles.ratingText}>{item.rating.rate}</Text>
+                </View>
             </View>
           </Pressable>
         )}
