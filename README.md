@@ -40,6 +40,14 @@ Carrinho de compras:
 - [X] Valor total, somando os preços de todos os itens no carrinho;
 - [X] Botão para a finalização do pedido;
 
+Pontos importantes:
+- Usabilidade: O projeto foi desenvolvido com foco na usabilidade, com uma interface amigável, simples e intuitiva.
+- Criatividade: Fiz todo o projeto do zero e tive como base o app do AliExpress.
+- Código limpo e organização: O código está limpo, organizado e comentado, facilitando a leitura e a manutenção.
+- Conventional Commits: foram adicionados commits com a convenção padrão internacional, mantendo clareza e simplicidade.
+- Documentação do projeto (readme): O arquivo readme.md contém todas as informações necessárias para executar o projeto.
+- Performance: O projeto foi otimizado para ter um bom desempenho.
+
 # :books: Stacks utilizadas
 
 ### Front-end
@@ -47,6 +55,7 @@ Carrinho de compras:
 - [React Native](https://reactnative.dev/)
 - [Expo](https://expo.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
+- [React Context](https://pt-br.react.dev/learn/scaling-up-with-reducer-and-context)
 
 
 # Etapa mais desafiadora
