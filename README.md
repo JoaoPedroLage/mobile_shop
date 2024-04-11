@@ -25,15 +25,15 @@ O que foi realizado:
 
 O que foi pensado para o projeto:
 
-   Página inicial:
+Página inicial:
 - [X] Listagem de categorias de produtos
 - [X] Listagem produtos
 
-   Página de produto:
+Página de produto:
 - [X] Carousel de imagens
 - [X] Detalhes do produto
 
-   Carrinho de compras
+Carrinho de compras:
 - [X] Atualizar a quantidade de um produto no carrinho;
 - [X] Excluir um item do carrinho;
 - [X] Mensagem de carrinho vazio;
