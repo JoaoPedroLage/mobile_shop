@@ -92,60 +92,35 @@ export default function HomeScreen() {
   };
 
   return (
-    <SafeAreaView
-      style={styles.container}
-    >
-      {/* <TextInput
-        onChangeText={setText}
-        value={text}
-        placeholder={'Please type here…'}
-      /> */}
-      <ScrollView
-        contentContainerStyle={styles.viewListCategories}
-        horizontal={true}
-      >
-        <Button
-          onPress={() => onPressSelectedCategory('All Products')}
-          title={'All Products'}
-        />
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollContainer} horizontal>
+        <Button onPress={() => onPressSelectedCategory('All Products')} title={'All Products'} />
         <FlatList
-          // style={styles.flatListCategories}
-          contentContainerStyle={{ flexDirection: "row" }}
+          contentContainerStyle={styles.categoryList}
           data={categories}
+          horizontal
           keyExtractor={(index) => index}
           renderItem={({ item }) => (
-            <View
-            // style={styles.viewListCategories}
-            >
-              <Button onPress={() => onPressSelectedCategory(item)} title={item} />
-            </View>
+            <Button onPress={() => onPressSelectedCategory(item)} title={item} />
           )}
         />
       </ScrollView>
       <FlatList
-        style={styles.flatList}
+        style={styles.productList}
         data={products}
         keyExtractor={(item: Product | any) => item.id.toString()}
         renderItem={({ item }) => (
-          <Pressable
-            onPress={() => { onPressSelectedProduct(item); setLoading(false); }}
-          >
-            <Link
-              href={{ pathname: "/product", params: { item } }}
-            >
-              <View
-                style={styles.card}
-              >
-                <Text>{item.title}</Text>
-                <Image source={{ uri: item.image }} style={styles.image} />
-                <Text>R$ {item.price}</Text>
-                <View style={styles.rowList}>
-                  <Text>{item.rating.count}</Text>
-                  <Image source={{ uri: '../../assets/images/icons8-star-50.png' }} style={{ width: 10, height: 10 }} />
-                  <Text>{item.rating.rate}</Text>
-                </View>
+          <Pressable onPress={() => onPressSelectedProduct(item)}>
+            <View style={styles.card}>
+              <Text style={styles.title}>{item.title}</Text>
+              <Image source={{ uri: item.image }} style={styles.image} />
+              <Text style={styles.price}>R$ {item.price}</Text>
+              <View style={styles.ratingContainer}>
+                <Text style={styles.ratingText}>{item.rating.count}</Text>
+                <Image source={{ uri: '../../assets/images/icons8-star-50.png' }} style={styles.starIcon} />
+                <Text style={styles.ratingText}>{item.rating.rate}</Text>
               </View>
-            </Link >
+            </View>
           </Pressable>
         )}
       />
@@ -158,40 +133,15 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  flatList: {
+  scrollContainer: {
+    flexDirection: 'row',
+  },
+  categoryList: {
+    flexDirection: 'row',
+  },
+  productList: {
     width: '100%',
     height: '100%',
-  },
-  flatListCategories: {
-    flexDirection: 'column',
-  },
-  viewListCategories: {
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
-  },
-  flatListView: {
-    width: '100%',
-    height: '100%',
-  },
-  image: {
-    width: 200,
-    height: 200,
-    resizeMode: 'cover',
-  },
-  rowList: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  ratingCount: {
-    marginRight: 5,
-  },
-  starIcon: {
-    width: 10,
-    height: 10,
-    marginRight: 5,
-  },
-  ratingRate: {
-    marginRight: 10,
   },
   card: {
     borderColor: '#ccc',
@@ -199,10 +149,35 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     margin: 5,
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    width: '96%',
-    height: 350,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  image: {
+    width: 150,
+    height: 150,
+    resizeMode: 'cover',
+    marginBottom: 5,
+  },
+  price: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  ratingContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  ratingText: {
+    marginRight: 5,
+  },
+  starIcon: {
+    width: 10,
+    height: 10,
+    marginRight: 5,
   },
 });
