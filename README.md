@@ -71,7 +71,7 @@ Pontos importantes:
 # 🛠️ Abrir e rodar o projeto
 
 1. Clone o repositório
-  * `git clone git@github.com:JoaoPedroLage/Begins_itspay.git`
+*`https://github.com/JoaoPedroLage/mobile_shop/blob/main/README.md`
   * Entre na pasta do repositório que você acabou de clonar
 
 2. Instale as dependências e inicialize
