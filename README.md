@@ -1,4 +1,4 @@
-# :package: ITS PAY
+# :package: mobile shop
 por João Pedro Lage
 
 <p align="center">
