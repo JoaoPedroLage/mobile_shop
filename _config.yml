@@ -1,0 +1,27 @@
+# _config.yml para Expo Web no GitHub Pages
+
+# Configurações básicas do site
+title: Meu App Expo Web
+description: Um aplicativo Expo hospedado no GitHub Pages
+baseurl: ""  # Use "" se estiver no domínio raiz, ou "/repositorio" se estiver em um subdiretório
+url: "https://seu-usuario.github.io"  # Substitua pelo seu domínio
+
+# Configurações do Jekyll
+theme: jekyll-theme-minimal  # Um tema simples para evitar conflitos
+plugins: []  # Desative plugins desnecessários
+
+# Ignorar arquivos desnecessários
+exclude:
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - yarn.lock
+  - .expo/
+  - .gitignore
+  - .github/
+  - .git/
+
+# Configurações extras para SPA (Single Page Application)
+# Isso ajuda a garantir que rotas do React Router funcionem
+include:
+  - 404.html  # Importante para SPAs (redireciona para index.html)
