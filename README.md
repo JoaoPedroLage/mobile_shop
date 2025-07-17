@@ -78,4 +78,4 @@ Pontos importantes:
   * Instale as dependências:
     * `yarn install / npm install`
   * Inicialize o projeto:
-   * `yarn start / npm start`
+    * `yarn start / npm start`
