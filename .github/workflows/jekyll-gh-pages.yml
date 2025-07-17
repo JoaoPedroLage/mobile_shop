@@ -28,36 +28,43 @@ jobs:
           
       - name: Install dependencies
         run: |
-          npm install -g expo-cli
-          npm install crypto-browserify stream-browserify buffer
+          npm install -g eas-cli
           npm install
+          npm install crypto-browserify stream-browserify buffer
           
       - name: Build Expo Web
         run: |
-          expo build:web
+          export NODE_OPTIONS=--openssl-legacy-provider
+          npx expo export:web
           
-      - name: Configure Jekyll to serve Expo Web
+      - name: Configure Jekyll
         run: |
-          # Crie um arquivo de configuração Jekyll básico
           echo 'theme: jekyll-theme-minimal' > _config.yml
           echo 'exclude: [node_modules]' >> _config.yml
+          echo 'include: [404.html]' >> _config.yml
+          mv dist/ _site/
           
-          # Mova a build do Expo para o diretório que o Jekyll servirá
-          mv web-build/ _site/
+      - name: Create 404.html for SPA
+        run: |
+          echo '<!DOCTYPE html>
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <title>Redirecting...</title>
+              <script>
+                sessionStorage.redirect = location.pathname;
+                window.location.href = "/";
+              </script>
+            </head>
+            <body>
+              <p>If not redirected, <a href="/">click here</a>.</p>
+            </body>
+          </html>' > _site/404.html
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: '_site'
-
-      - name: Build Expo Web
-        run: |
-          # Instala o polyfill necessário
-          npm install crypto-browserify
-          # Configura variáveis de ambiente para o Webpack
-          export NODE_OPTIONS=--openssl-legacy-provider
-          # Gera a build com configuração customizada
-          expo build:web --no-pwa
 
   deploy:
     environment:
