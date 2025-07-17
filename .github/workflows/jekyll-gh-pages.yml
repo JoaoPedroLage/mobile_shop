@@ -49,6 +49,15 @@ jobs:
         with:
           path: '_site'
 
+      - name: Build Expo Web
+        run: |
+          # Instala o polyfill necessário
+          npm install crypto-browserify
+          # Configura variáveis de ambiente para o Webpack
+          export NODE_OPTIONS=--openssl-legacy-provider
+          # Gera a build com configuração customizada
+          expo build:web --no-pwa
+
   deploy:
     environment:
       name: github-pages
